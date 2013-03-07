@@ -1,0 +1,42 @@
+public double findMedianSortedArrays(int A[], int B[]) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+  	int lenA = A.length;
+		int lenB = B.length;
+//		System.out.println(lenA+" "+lenB);
+		int medIndex=0;
+		
+		if((lenA+lenB)%2==0){
+//			System.out.println((lenA+lenB)/2);
+			medIndex = (lenA+lenB)/2;
+			return (double)(kthlargest(A,B,medIndex)+kthlargest(A,B,medIndex+1))/2;
+		}
+		else {
+			medIndex = (lenA+lenB)/2+1;
+			return kthlargest(A,B,medIndex);}
+    }
+    
+	
+	public static int kthlargest(int[] a,int[] b,int k){
+	
+	if(a.length==0)
+		return b[k-1];
+	if(b.length==0)
+		return a[k-1];
+	int mida = a.length/2;
+	int midb = b.length/2;
+	if(k==1){
+		return a[0]>b[0]?b[0]:a[0];
+	}
+	if ((mida+midb)<k){
+		if (a[mida]>b[midb])
+            return kthlargest(a, Arrays.copyOfRange(b, midb+1, b.length), k-midb-1);
+        else
+            return kthlargest(Arrays.copyOfRange(a, mida+1, a.length), b, k-mida-1);}
+    else{
+        if (a[mida]>b[midb])
+            return kthlargest(Arrays.copyOfRange(a, 0,mida), b, k);
+        else
+            return kthlargest(a, Arrays.copyOfRange(b, 0,midb), k);
+	}
+}
