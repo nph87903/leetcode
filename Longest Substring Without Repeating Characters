@@ -1,0 +1,28 @@
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), maxLen = 0;
+        boolean[] exist = new boolean[256];
+        
+        int head = 0;
+        int tail = 0;
+        while(tail < n){
+            if(exist[s.charAt(tail)] == true )
+            {
+                if(maxLen < (tail - head))
+                    maxLen = tail - head;
+                    while (s.charAt(head) != s.charAt(tail)) {
+                        exist[s.charAt(head)] = false;
+                        head++;
+                    }
+                head++;
+                tail++;
+            }else{
+                exist[s.charAt(tail)] = true;
+                tail++;
+            }
+        }
+    if(maxLen < n - head)
+        maxLen = n - head;
+    return maxLen;
+    }
+}
