@@ -1,0 +1,76 @@
+public class Solution {
+    public int atoi(String str) {
+        int intMax = 2147483647;
+        int intMin = -2147483648;
+        if(str.equals(""))
+            return 0;
+            
+        int index = 0;
+        int result = 0;
+        boolean flag = true; //true stands for positive false stands for negative
+        boolean overflow = false;
+        while(str.charAt(index) == ' '){
+            index++;
+        }
+        
+        if(str.charAt(index) == '-' ){
+            flag = false;
+            index ++ ;
+        }else if(str.charAt(index) == '+' ){
+            flag = true;
+            index++;
+        }
+        
+        String sub = str.substring(index);
+        int n = sub.length();
+        
+        if(!isNum(sub.charAt(0)))
+            return 0;
+        
+        for(int i =0;i<n;i++){
+            if(!isNum(sub.charAt(i))){
+                break;
+            }
+            else{
+                int digit = sub.charAt(i) - '0';
+                int temp = result*10+digit;
+                
+                if((temp - digit)/10 !=result)
+                    {
+                        overflow = true;
+                        break;
+                    }
+                if(temp>0&&result<0)
+                    {
+                        overflow = true;
+                        break;
+                    }
+                if(temp<0&&result>0)
+                    {
+                        overflow = true;
+                        break;
+                    }
+                result = temp;
+            }
+        }
+        if(flag){
+            if(overflow)
+                return intMax;
+            else
+                return result;
+        }
+        else{
+            if(overflow)
+                return intMin;
+            else
+                return -result;
+        }
+    }
+    
+    public boolean isNum(char c){
+        if(c>='0'&&c<='9')
+            return true;
+        else
+            return false;
+    }
+}
