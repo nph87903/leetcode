@@ -1,0 +1,56 @@
+public class Solution {
+    public String intToRoman(int num) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        StringBuffer sb = new StringBuffer();
+        while(num/1000!=0){
+            num = num -1000;
+            sb.append("M");
+        }
+        while(num/900!=0){
+            num = num -900;
+            sb.append("CM");
+        }
+        while(num/ 500!= 0){
+            num = num - 500;
+            sb.append("D");
+        }
+        while(num/ 400!= 0){
+            num = num - 400;
+            sb.append("CD");
+        }
+        while(num/ 100!= 0){
+            num = num - 100;
+            sb.append("C");
+        }
+        
+        while(num/ 90!= 0){
+            num = num - 90;
+            sb.append("XC");
+        }
+        while(num / 50!= 0){
+            num = num - 50;
+            sb.append("L");
+        }
+        while(num / 40!= 0){
+            num = num - 40;
+            sb.append("XL");
+        }
+        while(num / 10!= 0){
+            num = num - 10;
+            sb.append("X");
+        }
+        switch(num){
+            case 1:sb.append("I");break;
+            case 2:sb.append("II");break;
+            case 3:sb.append("III");break;
+            case 4:sb.append("IV");break;
+            case 5:sb.append("V");break;
+            case 6:sb.append("VI");break;
+            case 7:sb.append("VII");break;
+            case 8:sb.append("VIII");break;
+            case 9:sb.append("IX");break;
+        }
+        return sb.toString();
+    }
+}
