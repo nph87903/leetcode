@@ -1,0 +1,32 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> fourSum(int[] num, int target) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        ArrayList<ArrayList<Integer>> resultAr = new ArrayList<ArrayList<Integer>>();
+        HashSet<ArrayList<Integer>> result  = new HashSet<ArrayList<Integer>>();
+        int n = num.length;
+        
+        if(n<4)
+            return resultAr;
+        
+        Arrays.sort(num);
+        
+        for(int i = 0; i < n-3; i++)
+        for(int j = i+1; j < n-2; j++)
+        for(int k = j+1; k < n-1; k++)
+        for(int l = k+1; l < n; l++){
+            int temp = num[i]+num[j]+num[k]+num[l];
+            if(temp == target)
+            {
+                ArrayList<Integer> al = new ArrayList<Integer>();
+                al.add(num[i]);
+                al.add(num[j]);
+                al.add(num[k]);
+                al.add(num[l]);
+                result.add(al);
+            }
+        }
+        resultAr.addAll(result);
+        return resultAr;  
+    }
+}
