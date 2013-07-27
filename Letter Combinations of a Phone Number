@@ -1,0 +1,43 @@
+public class Solution {
+    public ArrayList<String> letterCombinations(String digits) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        ArrayList<String> result = new ArrayList<String>();
+        result.add("");
+        if(digits.equals("")){
+            return result;
+        }
+        
+        int n  = digits.length();
+        for(int i = 0; i < n ; i++)
+        {
+            ArrayList<String> tempArray = new ArrayList<String>();
+            char c= digits.charAt(i);
+            String[] temp;
+            switch (c){
+                case '1':temp = null;break;
+                case '2':temp = new String[] {"a","b","c"};break;
+                case '3':temp = new String[] {"d","e","f"};break;
+                case '4':temp = new String[] {"g","h","i"};break;
+                case '5':temp = new String[] {"j","k","l"};break;
+                case '6':temp = new String[] {"m","n","o"};break;
+                case '7':temp = new String[] {"p","q","s","r"};break;
+                case '8':temp = new String[] {"t","u","v"};break;
+                case '9':temp = new String[] {"w","x","y","z"};break;
+                case '0':temp = new String[] {" "};break;
+                default:temp = null;
+            }
+            if(temp!=null){
+                for(String s: temp){
+                    for(String re:result){
+                        String newS = re + s;
+                        tempArray.add(newS);
+                    }
+                }
+            }
+            result = tempArray;
+        }
+        
+        return result;
+    }
+}
