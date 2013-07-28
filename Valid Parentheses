@@ -1,0 +1,33 @@
+public class Solution {
+    public boolean isValid(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int n = s.length();
+        if(n == 0)
+            return true;
+        
+        Stack<Character> brakets = new Stack<Character>();
+        for(int i = 0; i< n ; i++){
+            char temp = s.charAt(i);
+                if(temp == '{') brakets.push('}');
+                else if(temp == '[') brakets.push(']');
+                else if(temp == '(') brakets.push(')');
+                else{
+                
+                if(brakets.size() == 0)
+                    return false;
+                    
+                char c = brakets.pop();
+                
+                if(c == temp)
+                    continue;
+                else
+                    return false;
+                }
+            }    
+        if(brakets.size() != 0)
+            return false;
+        else
+            return true;
+    }
+}
