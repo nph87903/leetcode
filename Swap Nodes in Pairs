@@ -19,12 +19,14 @@ public class Solution {
         if(node == null)
             return null;
         if(node.next!=null){
-            ListNode temp = node;
+            ListNode temp1 = node;
+            ListNode temp2 = node.next.next;
             node = node.next;
-            temp.next = null;
+            temp1.next = null;
             node.next = temp;
-            node.next.next = helper(node.next.next);
+            node.next.next = helper(temp2);
         }
         return node;
     }
 }
+
