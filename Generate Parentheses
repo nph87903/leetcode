@@ -1,0 +1,30 @@
+public class Solution {
+public ArrayList<String> generateParenthesis(int n) {
+    assert(n >= 0);
+    if (n == 0) return new ArrayList<String>();
+    return helper(n,n, new StringBuffer());
+}
+
+public ArrayList<String> helper(int l, int r, StringBuffer sb){
+    ArrayList<String> result = new ArrayList<String>();
+    if(l < 0 || r < 0)
+        return result;
+    if(r == 0){
+        result.add(sb.toString());
+        return result;
+        
+    }
+    
+    if(l > 0){
+        StringBuffer newS = new StringBuffer(sb);
+        newS.append("(");
+        result.addAll(helper(l-1,r,newS));
+    }
+    if(l < r){
+        StringBuffer newS = new StringBuffer(sb);
+        newS.append(")");
+        result.addAll(helper(l,r-1,newS));
+    }
+    return result;
+}
+}
