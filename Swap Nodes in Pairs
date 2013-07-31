@@ -23,7 +23,7 @@ public class Solution {
             ListNode temp2 = node.next.next;
             node = node.next;
             temp1.next = null;
-            node.next = temp;
+            node.next = temp1;
             node.next.next = helper(temp2);
         }
         return node;
