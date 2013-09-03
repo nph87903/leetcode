@@ -1,0 +1,27 @@
+public class Solution {
+    public int jump(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        return jumpHelper(A, 0,0);
+    }
+    
+    public int jumpHelper(int[] A, int index, int count){
+        int n = A.length();
+        if(index == n-1)
+            return count;
+        if(index > n-1)
+            return -100;
+        
+        int num = A[index];
+        int min = -1;
+        for(int i = 1; i < num; i++){
+            int temp = jumpHelper(A, index+i,count+1);
+            if(min!=-1){
+                if(temp < min)
+                    min = temp;
+            }else if(temp != -100)
+                min = temp;
+        }
+        return min;
+    }
+}
