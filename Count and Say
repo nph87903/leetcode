@@ -1,0 +1,37 @@
+public class Solution {
+    public String countAndSay(int m) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(m<=1)
+            return Integer.toString(1);
+        String result = "1";
+        for(int i = 1;i<m;i++){
+            result = count(result);
+        }    
+        return result;
+    }
+    
+    public String count(String num){
+        
+        int n = num.length();
+        StringBuffer result = new StringBuffer();
+        char former = num.charAt(0);
+        int count =1;
+        
+        for(int i = 1; i< n; i++){
+            char tem = num.charAt(i);
+            if(tem == former){
+                count++;
+            }else{
+                result.append(count);
+                result.append(former);
+                former = tem;
+                count =1;
+            }    
+        }
+                result.append(count);
+                result.append(former);
+        return result.toString();
+    
+    }
+}
