@@ -1,0 +1,19 @@
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int n = A.length;
+        if(n==0)
+            return 1;
+        boolean[] flag = new boolean[10000];
+        for(int i: A){
+            if(i>=1)
+                flag[i]=true;
+        }
+        for(int i = 1; i< flag.length;i ++){
+            if(flag[i] == false)
+                return i;
+        }
+        return 1;
+    }
+}
