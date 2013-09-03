@@ -1,0 +1,22 @@
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(A.length == 0)
+            return 0;
+        int start = 0;
+        int pointer = 1;
+        
+        int last = A[start];
+        
+        while(pointer < A.length){
+        if(A[pointer] != A[start]){
+            start++;
+            A[start] = A[pointer];
+        }
+       
+        pointer++;
+        }
+        return start+1;
+    }
+}
