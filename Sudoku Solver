@@ -1,0 +1,57 @@
+public void solveSudoku(char[][] board) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        fill(board,0,0);
+    }
+
+    public boolean fill(char[][] board, int i, int j){
+        int[] position = findNext(board, i ,j );
+        if(position == null)
+            return false;
+        for(int k = 1;k<10;k++){
+            board[position[0]][position[1]] = Character.forDigit(k,10);
+            if(isValidSudoku(board)&&fill(board,position[0],position[1]))
+                return true;
+            else
+                board[position[0]][position[1]] = '.';
+        }
+        return false;
+    }
+
+     public int[] findNext(char[][] board, int i, int j){
+         int ii =i,jj=j;
+         for(;ii<9;ii++){
+              if(ii == i)
+                  jj=j;
+              else
+                  jj=0;
+              for(;jj<9;jj++){
+                  if(board[ii][jj] == '.')
+                      {
+                         return new int[]{ii, jj}; 
+                      }
+              }
+          }
+          return null;
+     }
+     public boolean isValidSudoku(char[][] board) {
+         // Start typing your Java solution below
+         // DO NOT write main() function
+         // Start typing your C/C++ solution below
+         // DO NOT write int main() function
+         boolean[][] rows = new boolean[9][9];
+         boolean[][] cols = new boolean[9][9];
+         boolean[][] blocks = new boolean[9][9];
+         
+         
+         for (int i = 0; i < 9; ++i) {
+             for (int j = 0; j < 9; ++j) {
+                 if (board[i][j] == '.') continue;
+                 int c = board[i][j] - '1';
+                 if (rows[i][c] || cols[j][c] || blocks[i - i % 3 + j / 3][c])
+                     return false;
+                 rows[i][c] = cols[j][c] = blocks[i - i % 3 + j / 3][c] = true;
+             }
+         }
+         return true;
+     }
