@@ -1,0 +1,74 @@
+public class Solution {
+    public String multiply(String num1, String num2) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        String res = "";
+        int n = num2.length();
+        StringBuffer n1 = new StringBuffer(num1);
+        StringBuffer n2 = new StringBuffer(num2);
+        n1 = n1.reverse();
+        n2 = n2.reverse();
+        
+        for(int i = 0; i<n; i++){
+            int tem = n2.charAt(i) - '0';
+            String mul =  mul(n1.toString(),tem,i);
+            res = add(res, mul);
+        }
+        StringBuffer result = new StringBuffer(res);
+        result = result.reverse();
+        return result.toString();
+        
+    }
+    
+    public String mul (String num1, int num2, int dig){
+        int n = num1.length();
+        if(num2 == 0||num1.equals("0"))
+            return "0";
+        StringBuffer res = new StringBuffer();
+        int flag = 0;
+        for(int i = 0; i< dig; i++)
+            res.append("0");
+        for(int i = 0; i< n;i++)
+            {
+                int tem = num1.charAt(i) - '0';
+                int outcome = tem*num2;
+                outcome += flag;
+                flag = outcome/10;
+                outcome = outcome%10;
+                res.append(outcome);
+            }
+        if(flag !=0)
+            res.append(flag);
+        return res.toString();
+            
+    }
+    
+    public String add (String num1, String num2){
+        int n = num1.length();
+        int m = num2.length();
+        StringBuffer sb = new StringBuffer();
+        
+        int index = Math.max(m,n);
+        boolean flag = false;
+        for(int i = 0; i < index; i++){
+            int x = 0, y = 0;
+            if(i<n)
+                x = num1.charAt(i) - '0';
+            if(i<m)
+                y = num2.charAt(i) - '0';
+            int tem = x+y;
+            if(flag)
+                tem += 1;
+            if(tem>=10)
+                flag = true;
+            else 
+                flag = false;
+                
+            tem = tem%10;
+            sb.append(tem);
+        }
+        if(flag == true)
+            sb.append("1");
+        return sb.toString();
+    }
+}
